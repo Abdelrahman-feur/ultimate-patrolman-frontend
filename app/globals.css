@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255; */
+  --back-color: #131b2e;
+}
+/* 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+/* body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
+body {
+  background-color: #131b2e;
+  height: 100%;
+}
+
+.footer {
+  bottom: 0;
+  margin-bottom: 0;
+}
+.footer-header {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -1.5%;
+}
+.footer-text {
+  color: #e2e5ea;
+  font-weight: 400;
+  font-size: 14px;
+}
+.fontpoppin {
+  font-family: var(--font-poppins);
+}
+
+input::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  padding-left: 39px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+/********************************     Style for Feature Page     *******************************/
+.cardBorder {
+  border-color: #123652;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+}
+.lastCard {
+  border-color: #123652;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+}
+.featureColor {
+  color: #bcbcbc;
+}
+.labtopContainer {
+  width: 29.1875rem;
+  height: 17.5rem;
+}
+.featureTextBox {
+  width: 37.6875rem;
+  height: auto;
+}
+.mobileContainer {
+  display: flex;
+  /* align-items: flex-start; */
+  gap: 4rem;
+  width: 33.28521rem;
+  height: 13.81546rem;
+}
+/*********************************   Support FAQS **************************************/
+.supportCard {
+  width: 100%;
+  min-height: 18rem;
+  border-radius: 1rem;
+  background-color: #17213a;
+  animation-timing-function: ease-out;
+  animation-duration: 3000ms;
+  cursor: pointer;
+}
+.supportCard:active {
+  animation-name: dissolve;
+}
+
+@keyframes dissolve {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+
+/********************************************    POPUP    ************************************/
+.popup {
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  color: white;
+  width: 100%;
+  height: 200vh;
+}
+
+/*************************************** Button  ********************************************/
+@keyframes instantAnimation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+.button {
+  /* Set initial styles */
+  transform: scale(1);
+  transition: transform 0s; /* Disable transition */
+
+  /* Add animation when clicked */
+  animation: instantAnimation 0s forwards;
+}
+
+.button:active {
+  /* Re-enable transition on click */
+  transition: transform 0.3s;
+}
