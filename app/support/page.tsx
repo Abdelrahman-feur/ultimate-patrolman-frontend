@@ -10,6 +10,7 @@ const Support = () => {
   const router = useRouter();
   const [chat, setChat] = useState("invisible");
   const [issueForm, setIssueForm] = useState("invisible");
+  const [message,setMessage]=useState("")
 
   return (
     <div className=" ml-20 mr-20 mt-20 flex flex-col items-center justify-center ">
@@ -52,7 +53,9 @@ const Support = () => {
       </div>
       {/***********************             Card2            ************************/}
       <div
-        onClick={() => setChat("visible")}
+        onClick={() =>{ 
+          router.push("#chatbot")
+          setChat("visible")}}
         className=" mt-24 ml-32 mr-32 supportCard text-center flex flex-col-reverse lg:flex-row  justify-between items-center p-8"
       >
         <div className=" inline-flex flex-wrap flex-col space-y-16  ">
@@ -114,8 +117,10 @@ const Support = () => {
         <Icon3 />
       </div>
       {/************************            Chat POPUP            **********************************/}
-      <div className={`popup flex items-start justify-center h-60 ${chat} `}>
-        <div className="rounded-2xl bg-popupbackground w-2/3">
+      <div
+      id="chatbot"
+      className={`popup flex items-start justify-center h-96 ${chat} `}>
+        <div className=" sticky rounded-2xl bg-popupbackground w-2/3">
           <p
             className="text-white m-2 text-right text-2xl cursor-pointer"
             onClick={() => setChat("invisible")}
@@ -123,7 +128,16 @@ const Support = () => {
             X
           </p>
           Live Chat
+          <input
+          placeholder="Type message"
+          id="message"
+          value={message}
+          type="text"
+          onChange={(e)=>setMessage(e.target.value)}
+          className=" m-auto block border-2 rounded-lg border-gray bg-transparent h-14 w-2/3 text-white box-border focus:border-btn-primary outline-0"
+        ></input>
         </div>
+        
       </div>
 
       {/********************** Issue Form  ******************************/}
@@ -147,9 +161,9 @@ const Support = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
