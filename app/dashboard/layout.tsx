@@ -1,21 +1,24 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Nav from "./nav";
 import CompanyLogo from "../header/components/companyLogo";
 import { usePathname } from "next/navigation";
+import SuperAdminNav from "./superAdminNav";
 
 const DashboardLatout = ({ children }: { children: React.ReactNode }) => {
+  const [admin, setsAdmin] = useState("superAdmin");
   return (
     // **************************** The Grid Layout For the Dashboard ***************//
-    <div className="grid grid-cols-6 ml-2 mr-2 mb-24 md:ml-32 md:mr-36 mt-10 gap-4">
+    <div className="grid grid-cols-6 ml-2 mr-2 mb-24 mt-10 gap-4">
       <header className="flex flex-col min-w-min ">
-        <div className="text-left">
+        <div className="text-left pl-8">
           <CompanyLogo />
         </div>
-        <div className="mt-8 flex flex-col space-y-8 in-w-min grid-flow-col  ">
-          <Nav />
+        <div className="mt-8 flex flex-col space-y-8 min-w-min grid-flow-col pl-6 ">
+          {admin === "admin" ? <Nav /> : <SuperAdminNav />}
         </div>
       </header>
-      <main className=" col-span-5 pl-4 ">{children}</main>
+      <main className=" col-span-5 pl-4 border ">{children}</main>
     </div>
   );
 };

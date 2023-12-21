@@ -1,16 +1,22 @@
+"use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import type { NextPage } from "next";
-import { useFormik } from "formik";
+import { Field, Formik, useFormik, Form } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
-
+import { useUserState } from "../lib/hooks";
+import { json } from "stream/consumers";
 const schema = Yup.object().shape({
   email: Yup.string().required().email(),
   password: Yup.string().required(),
 });
+
+const stateManagement = createContext(false);
 const LoginForm: NextPage = () => {
   const router = useRouter();
+
+  const [loggedin, setloggedIn] = useState();
 
   const formik = useFormik({
     initialValues: {
@@ -22,7 +28,7 @@ const LoginForm: NextPage = () => {
 
     // Handle form submission
     onSubmit: ({ email, password }) => {
-      // Make a request to your backend to login
+      localStorage.setItem("loggedIn", "false");
       router.push("/dashboard");
     },
   });
@@ -30,7 +36,7 @@ const LoginForm: NextPage = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} method="POST" className=" space-y-7 ">
+      <form onSubmit={handleSubmit} className=" space-y-7 ">
         <input
           placeholder="Email"
           id="email"
@@ -39,15 +45,20 @@ const LoginForm: NextPage = () => {
           onChange={handleChange}
           className=" m-auto block border-2 rounded-lg border-gray bg-transparent h-14 w-96 text-white box-border focus:border-btn-primary outline-0"
         ></input>
-        {errors.email && touched.email && <span>{errors.email}</span>}
+        {errors.email && touched.email && (
+          <span className="text-red">{errors.email}</span>
+        )}
 
         <input
           placeholder="password"
           id="password"
           type="password"
+          onChange={handleChange}
           className=" block m-auto border-2 rounded-lg border-gray bg-transparent h-14 w-96 text-white box-border focus:border-btn-primary outline-0"
         ></input>
-        {errors.password && touched.password && <span>{errors.password}</span>}
+        {errors.password && touched.password && (
+          <span className="text-red">{errors.password}</span>
+        )}
 
         <div className="flex justify-between text-white w-96 m-auto text-sm ">
           <div>
@@ -71,7 +82,7 @@ const LoginForm: NextPage = () => {
           {" "}
           Login{" "}
         </button>
-        <span className="text-red"> Invalid Credintials</span>
+        {/* <span className="text-red"> Invalid Credintials</span> */}
       </form>
     </>
   );

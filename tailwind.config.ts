@@ -28,6 +28,7 @@ const config: Config = {
       lgray: "#F0F3FA",
       carosuelbg: "#0D1322",
       correct: "#81C73E",
+      cardbg: "#1C263E",
     },
     fontFamily: { Poppins: ["poppins"] },
   },

@@ -12,6 +12,7 @@ const Header = () => {
     <>
       <header className="mt-6 flex justify-around items-center flex-wrap ">
         <CompanyLogo />
+
         <NavigationBar />
         <div className="w-72 h-10 space-x-6 text-base  font-Poppins">
           <SignUp />

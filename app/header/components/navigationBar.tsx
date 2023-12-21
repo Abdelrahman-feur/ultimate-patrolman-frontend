@@ -1,10 +1,21 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 
 const NavigationBar = () => {
   const path = usePathname();
+  // const [loggedIn, setloggedIn] = useState(function () {
+  //   const current = localStorage.getItem("loggedIn");
+  //   return current;
+  // });
+
+  // useEffect(() => {
+  //   const handleStoragChange = (event: StorageEvent) => {
+  //     setloggedIn(localStorage.getItem("loggedIn"));
+  //   };
+  //   window.addEventListener("storage", handleStoragChange);
+  // }, []);
   return (
     <nav className="text-nav-color text-base  font-Poppins space-x-9">
       <Link
