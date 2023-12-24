@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import Nav from "./nav";
 import CompanyLogo from "../header/components/companyLogo";
 import { usePathname } from "next/navigation";
 import SuperAdminNav from "./superAdminNav";
+import Loading from "./loading";
 
 const DashboardLatout = ({ children }: { children: React.ReactNode }) => {
   const [admin, setsAdmin] = useState("superAdmin");
@@ -18,7 +19,9 @@ const DashboardLatout = ({ children }: { children: React.ReactNode }) => {
           {admin === "admin" ? <Nav /> : <SuperAdminNav />}
         </div>
       </header>
-      <main className=" col-span-5 pl-4 border ">{children}</main>
+      <Suspense fallback={<Loading />}>
+        <main className=" col-span-5 pl-4 border ">{children}</main>
+      </Suspense>
     </div>
   );
 };

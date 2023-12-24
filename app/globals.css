@@ -147,3 +147,27 @@ input::placeholder {
   /* Re-enable transition on click */
   transition: transform 0.3s;
 }
+.animation {
+  animation-name: dissolve;
+  animation-duration: 300ms;
+  animation-timing-function: ease-out;
+  animation-delay: 800ms;
+}
+
+@keyframes dissolve {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.animation {
+  opacity: 1;
+  transition: opacity 800ms ease-out;
+}
+
+.animation:hover {
+  opacity: 0;
+  transition-delay: 800ms;
+}

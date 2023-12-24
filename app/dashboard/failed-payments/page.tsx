@@ -1,10 +1,43 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
-import React from "react";
+import React, { useState } from "react";
+import FailedAccount from "./components/failedAccount";
 
 const FailedPayment = () => {
   const router = useRouter();
+
+  const [company, setCompany] = useState([
+    {
+      id: 125,
+      companyName: "company4",
+      ContactPerson: "Khaled Ahmed Ali",
+      email: "Khalid@gmail.com",
+      value: "200$",
+    },
+    {
+      id: 126,
+      companyName: "company5",
+      ContactPerson: "Khaled Ahmed Ali",
+      email: "Khalid2@gmail.com",
+      value: "200$",
+    },
+    {
+      id: 127,
+      companyName: "company6",
+      ContactPerson: "Khaled Ahmed Ali",
+      email: "Khalid3@gmail.com",
+      value: "200$",
+    },
+  ]);
+
+  const handleRemoveCompany = (id: any) => {
+    const newCompany = company.filter((company) => {
+      if (company.id !== id) return company;
+    });
+
+    setCompany(newCompany);
+  };
   return (
     <>
       <div className="flex items-center space-x-32">
@@ -61,73 +94,13 @@ const FailedPayment = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-cardbg border h-16 text-neutral-400">
-            <td>125</td>
-            <td>Company4</td>
-            <td>Khalid Ali</td>
-            <td>khalid@gmail.com</td>
-            <td className="text-white">200$</td>
-            <td>
-              {" "}
-              <details className="dropdown hover:bg-none w-full">
-                <summary className="m-1 btn bg-cardbg border-none hover:bg-cardbg">
-                  <svg
-                    width="4"
-                    height="16"
-                    viewBox="0 0 4 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM2 12C0.9 12 0 12.9 0 14C0 15.1 0.9 16 2 16C3.1 16 4 15.1 4 14C4 12.9 3.1 12 2 12Z"
-                      fill="#A7A7A7"
-                    />
-                  </svg>
-                </summary>
-                <ul className="text-btn-primary p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-full">
-                  <li className="">
-                    <a>Send Email</a>
-                  </li>
-                  <li>
-                    <a>History Payment</a>
-                  </li>
-                  <li>
-                    <a className="text-red">Remove</a>
-                  </li>
-                </ul>
-              </details>
-            </td>
-          </tr>
-          <tr className="bg-cardbg border h-16 text-neutral-400">
-            <td>125</td>
-            <td>Company4</td>
-            <td>Khalid Ali</td>
-            <td>khalid@gmail.com</td>
-            <td className="text-white">200$</td>
-            <td>
-              <details className="dropdown hover:bg-none">
-                <summary className="m-1 btn bg-cardbg border-none hover:bg-cardbg">
-                  :
-                </summary>
-                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                  <li>
-                    <a>Item 1</a>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                </ul>
-              </details>
-            </td>
-          </tr>
-          <tr className="bg-cardbg border h-16 text-neutral-400">
-            <td>125</td>
-            <td>Company4</td>
-            <td>Khalid Ali</td>
-            <td>khalid@gmail.com</td>
-            <td className="text-white">200$</td>
-            <td>:</td>
-          </tr>
+          {company.map((company) => (
+            <FailedAccount
+              key={company.id}
+              company={company}
+              onRemoveCompany={handleRemoveCompany}
+            />
+          ))}
         </tbody>
       </table>
 

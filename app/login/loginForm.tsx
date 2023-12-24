@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
-import React, { createContext, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
+import { LoginStatusContext } from "../layout";
+
 import type { NextPage } from "next";
 import { Field, Formik, useFormik, Form } from "formik";
 import * as Yup from "yup";
@@ -12,12 +14,11 @@ const schema = Yup.object().shape({
   password: Yup.string().required(),
 });
 
-const stateManagement = createContext(false);
 const LoginForm: NextPage = () => {
   const router = useRouter();
+  const { setLoggedIn } = useContext(LoginStatusContext);
 
   const [loggedin, setloggedIn] = useState();
-
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -28,7 +29,8 @@ const LoginForm: NextPage = () => {
 
     // Handle form submission
     onSubmit: ({ email, password }) => {
-      localStorage.setItem("loggedIn", "false");
+      setLoggedIn(true);
+      localStorage.setItem("loggedIn", "true");
       router.push("/dashboard");
     },
   });
