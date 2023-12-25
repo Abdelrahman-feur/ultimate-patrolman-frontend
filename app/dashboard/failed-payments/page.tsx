@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { Router } from "next/router";
 import React, { useState } from "react";
 import FailedAccount from "./components/failedAccount";
+import { EmailTemplate } from "@/app/dashboard/failed-payments/email/email-tempelate";
 
 const FailedPayment = () => {
   const router = useRouter();
@@ -27,6 +28,13 @@ const FailedPayment = () => {
       companyName: "company6",
       ContactPerson: "Khaled Ahmed Ali",
       email: "Khalid3@gmail.com",
+      value: "200$",
+    },
+    {
+      id: 128,
+      companyName: "company7",
+      ContactPerson: "Khaled kareem",
+      email: "Khalid4@gmail.com",
       value: "200$",
     },
   ]);

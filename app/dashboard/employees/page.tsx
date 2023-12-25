@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import EmployeeCard from "./components/employeeCard";
+import { usePathname } from "next/navigation";
 
 const Employess = () => {
+  const path = usePathname();
   return (
     <>
       <h2 className="text-white text-3xl font-semibold leading-8 tracking-wide text-center mt-6">
@@ -12,7 +15,7 @@ const Employess = () => {
       </p>
       <div className=" flex flex-col space-y-4 sm:flex-row sm:space-y-0 flex-wrap items-center  justify-center space-x-0  sm:space-x-4 m-auto ">
         <div>
-          <EmployeeCard myLink={"#"} department={"Support"} />
+          <EmployeeCard myLink={`${path}/support`} department={"Support"} />
         </div>
         <div>
           <EmployeeCard myLink={"#"} department={"Data Sales"} />

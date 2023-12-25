@@ -1,6 +1,8 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import back from "@/public/back.svg";
+import { usePathname } from "next/navigation";
 interface myProps {
   company: {
     id: number;
@@ -13,9 +15,10 @@ interface myProps {
 }
 
 const FailedAccount = ({ company, onRemoveCompany }: myProps) => {
+  const path = usePathname();
   return (
     <>
-      <tr className="bg-cardbg border h-16 text-neutral-400">
+      <tr className=" bg-cardbg border h-16 text-neutral-400">
         <td>{company.id}</td>
         <td>{company.companyName}</td>
         <td>{company.ContactPerson}</td>
@@ -40,13 +43,26 @@ const FailedAccount = ({ company, onRemoveCompany }: myProps) => {
             </summary>
             <ul className="text-btn-primary p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-full">
               <li className="">
-                <Link href={"#"}>Send Email</Link>
+                <Link
+                  href={{
+                    pathname: `${path}/email`,
+                    query: {
+                      companyName: `${company.companyName}`,
+                      email: `${company.email}`,
+                    },
+                  }}
+                >
+                  Send Email
+                </Link>
               </li>
               <li>
                 <Link
                   href={{
                     pathname: `/dashboard/failed-payments/payment-history/company}`,
-                    query: { id: `${company.id}` },
+                    query: {
+                      id: `${company.id}`,
+                      companyName: `${company.companyName}`,
+                    },
                   }}
                 >
                   History Payment
